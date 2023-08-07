@@ -1,0 +1,4 @@
+# ignore these file types!
+*.sw*
+*.pyc
+*.o
