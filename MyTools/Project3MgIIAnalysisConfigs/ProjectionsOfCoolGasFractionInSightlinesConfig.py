@@ -1,0 +1,9 @@
+StampedeSnapDirect='/scratch/projects/xsede/GalaxiesOnFIRE/metal_diffusion/'
+ListOfStampedeSimulationsNames=['m12b_r7100']
+ListOfStampedekeysOfTheSimulationsNames=['m12b']
+ListOfStampedeSnapshotsNumbers=['513']
+#518 --> z=0.13
+#465 --> z=0.25
+#446 --> z=0.3
+#396 --> z=0.45
+#381 --> z=0.5
