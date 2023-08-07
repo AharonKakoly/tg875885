@@ -1,0 +1,47 @@
+#!/bin/bash                                     
+                                          
+#SBATCH --job-name=no_yt
+#SBATCH --partition=skx-normal
+#SBATCH --nodes=1                                  
+#SBATCH --ntasks=16                                 
+#SBATCH --time=2:00:00                               
+#SBATCH --output=/home1/08289/tg875885/radial_to_rotating_flows/Aharon/OutpotsMgII.out
+#SBATCH --error=/home1/08289/tg875885/radial_to_rotating_flows/Aharon/OutpotsMgII.err
+#SBATCH --mail-user=aharonkakoly@mail.tau.ac.il                  
+#SBATCH --mail-type=begin                              
+#SBATCH --mail-type=fail                              
+#SBATCH --mail-type=end                               
+#SBATCH --account=TG-AST140023
+module load python3
+module load phdf5/1.8.16
+export PYTHONPATH=$PYTHONPATH:/opt/apps/intel18/impi18_0/python3/3.7.0/lib/python3.7/site-packages
+                                          
+################################################################################################################################################ 
+# Input Arguments                                  
+########################################################################      
+# example usage
+# sbatch GeneralAnalysisStampede.txt m12b 7100_md 50 590
+#                 $0                  $1    $2    $3  $4
+                                          
+# What snapshot INDICES to use                               
+z_start=$3
+z_end=$4
+z_step=1
+                                          
+# How many processors to use? (Remember to account for memory constraints)     
+n_procs=10
+                                          
+# Example arguments you might want to pass                     
+#data_dir=/some/place/thats/backed/up                        
+#save_dir=/some/place/that/is/also/backed/up/I/suppose                
+                                          
+# Actual multiprocessing command                          
+sys_argv_1=$1
+sys_argv_2=$2
+seq $z_start $z_step $z_end | xargs -n 1 -P $n_procs sh -c 'python3 /home1/08289/tg875885/radial_to_rotating_flows/Aharon/MgIIProjectionsFor400{km}{s}.py $0 $1 $2' $sys_argv_1 $sys_argv_2
+
+
+
+
+
+
